@@ -10,16 +10,20 @@
     <!-- Sticky Header -->
     <header class="header">
         <div class="burger-menu" onclick="toggleMenu()">☰</div>
-        <div class="branding">Frame Factory</div>
+        <div class="branding">Frame Fabrik</div>
         <nav class="menu hidden">
-            <a href="#contact">Contact</a>
+            <a href="#contact">Kontakt</a>
             <a href="#impressum">Impressum</a>
         </nav>
     </header>
 
     <!-- Background Video -->
     <div class="background">
-        <video class="background-video" autoplay muted loop></video>
+        <video class="background-video" autoplay muted loop>
+            <source src="videos/video1.mp4" type="video/mp4">
+            <source src="videos/video1.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
     <!-- Content -->
@@ -27,8 +31,8 @@
         <!-- Section 1 -->
         <section class="section" data-video="videos/video1.mp4" data-video-webm="videos/video1.webm">
             <div class="text right">
-                <h1>Project Title 1</h1>
-                <p>A short description of the first project.</p>
+                <h1>Thailand Villa Resort</h1>
+                <p>The beautifull Villas on Koh Tao, Thailand.</p>
             </div>
             <img class="thumbnail right" src="images/thumbnail1.jpg" alt="Thumbnail 1">
         </section>
@@ -36,8 +40,8 @@
         <!-- Section 2 -->
         <section class="section" data-video="videos/video2.mp4" data-video-webm="videos/video2.webm">
             <div class="text left">
-                <h1>Project Title 2</h1>
-                <p>A short description of the second project.</p>
+                <h1>Hier könnte Ihre Werbung stehen</h1>
+                <p>Gib Geld lulz.</p>
             </div>
             <img class="thumbnail left" src="images/thumbnail2.jpg" alt="Thumbnail 2">
         </section>
@@ -45,11 +49,11 @@
 
     <!-- Contact Section -->
     <footer id="contact" class="contact">
-        <h2>Contact Me</h2>
+        <h2>Kontaktiere Uns!</h2>
         <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Ihre Email" required>
+            <textarea placeholder="Ihre Anfrage" required></textarea>
             <button type="submit">Send</button>
         </form>
     </footer>
@@ -57,7 +61,8 @@
     <!-- Impressum Section -->
     <section id="impressum" class="impressum">
         <h2>Impressum</h2>
-        <p>Your legal and contact details go here.</p>
+        <p>Frame-Fabrik
+            Hamburg.</p>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
