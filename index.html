@@ -25,19 +25,21 @@
         
         <!-- Background Video Wrapper -->
         <div class="video-container">
+            <!-- Erstes Video -->
             <video class="background-video" autoplay muted loop playsinline>
                 <source src="videos/video1.mp4" type="video/mp4">
-                <source src="videos/video1.webm" type="video/webm">
-                Your browser does not support the video tag.
+            </video>
+            <!-- Zweites Video -->
+            <video class="background-video video2" autoplay muted loop playsinline>
+                <source src="videos/video2.mp4" type="video/mp4">
             </video>
             <div class="video-filter-overlay"></div>
-            <button class="video-toggle-btn" type="button">Filter Aus</button>
         </div>
 
         <!-- Content Container -->
         <div class="content-container">
             <!-- Section 1 -->
-            <section class="section" data-video="videos/video1.mp4" data-video-webm="videos/video1.webm">
+            <section class="section" data-video="videos/video1.mp4">
                 <div class="section-content right">
                     <h1>Project Title 1</h1>
                     <p>A short description of the first project.</p>
@@ -46,7 +48,7 @@
             </section>
 
             <!-- Section 2 -->
-            <section class="section" data-video="videos/video2.mp4" data-video-webm="videos/video2.webm">
+            <section class="section" data-video="videos/video2.mp4">
                 <div class="section-content left">
                     <h1>Project Title 2</h1>
                     <p>A short description of the second project.</p>

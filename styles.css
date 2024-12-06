@@ -120,8 +120,15 @@ body {
     object-fit: cover;
     filter: blur(15px) brightness(0.5);
     transition: all 0.7s ease;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1;
+}
+
+.background-video.video2 {
+    opacity: 0;
+    z-index: 0;
 }
 
 .background-video.active {
@@ -228,25 +235,4 @@ body {
 
 .contact button:hover {
     background: #666;
-}
-
-.video-toggle-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 15px 30px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.video-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
 }

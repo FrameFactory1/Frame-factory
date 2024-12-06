@@ -1,42 +1,9 @@
-// Mache toggleMenu global verfügbar
-window.toggleMenu = function() {
-    const burgerMenu = document.querySelector('.burger-menu');
-    const menu = document.querySelector('.menu');
-    
-    // Toggle Burger-Animation
-    burgerMenu.classList.toggle('active');
-    
-    // Toggle Menu mit Animation
-    menu.classList.toggle('hidden');
-    
-    // Animate Menu Items
-    const menuItems = menu.querySelectorAll('a');
-    menuItems.forEach((item, index) => {
-        if (menu.classList.contains('hidden')) {
-            gsap.to(item, {
-                opacity: 1,
-                x: 0,
-                duration: 0.3,
-                delay: index * 0.1
-            });
-        } else {
-            gsap.to(item, {
-                opacity: 0,
-                x: -20,
-                duration: 0.3
-            });
-        }
-    });
-}
-
-// Warte bis das Dokument geladen ist
 document.addEventListener('DOMContentLoaded', function() {
     // Burger Menu Click Event
     const burgerMenu = document.querySelector('.burger-menu');
     const menu = document.querySelector('.menu');
     const video = document.querySelector('.background-video');
     const sections = document.querySelectorAll('.section');
-    const toggleBtn = document.querySelector('.video-toggle-btn');
     const header = document.querySelector('.header');
     let lastScrollY = window.scrollY;
 
@@ -69,52 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialisiere die Sections
     sections.forEach((section) => {
-        // Stelle sicher, dass die Sections sichtbar sind
         section.style.display = 'flex';
         section.style.opacity = 1;
         section.style.transform = 'translateX(0)';
     });
 
-    // Video Filter Toggle Handler
-    if (toggleBtn && video) {
-        toggleBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Button wurde geklickt');
-            
+    // Click anywhere to toggle filter
+    document.addEventListener('click', function(e) {
+        // Ignoriere Klicks auf das Menü und den Burger-Button
+        if (!e.target.closest('.menu') && !e.target.closest('.burger-menu')) {
             video.classList.toggle('active');
-            this.textContent = video.classList.contains('active') ? 'Filter Ein' : 'Filter Aus';
-            
-            if (video.classList.contains('active')) {
-                sections.forEach((section) => {
-                    gsap.to(section, {
-                        x: '100%',
-                        opacity: 0,
-                        duration: 0.7,
-                        ease: "power2.inOut",
-                        onComplete: () => {
-                            section.style.display = 'none';
-                        }
-                    });
-                });
-            } else {
-                sections.forEach((section) => {
-                    section.style.display = 'flex';
-                    gsap.fromTo(section, 
-                        {
-                            x: '100%',
-                            opacity: 0
-                        },
-                        {
-                            x: '0%',
-                            opacity: 1,
-                            duration: 0.7,
-                            ease: "power2.inOut"
-                        }
-                    );
-                });
-            }
-        });
-    }
+        }
+    });
 
     // Smooth video transitions on scroll
     sections.forEach((section) => {
