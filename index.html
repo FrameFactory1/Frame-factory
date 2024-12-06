@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Frame Factory</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Sticky Header -->
     <header class="header">
-        <div class="burger-menu" onclick="toggleMenu()">☰</div>
-        <div class="branding">Frame Fabrik</div>
-        <nav class="menu hidden">
-            <a href="#contact">Kontakt</a>
+        <div class="burger-menu">☰</div>
+        <div class="branding">Frame Factory</div>
+        <nav class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
             <a href="#impressum">Impressum</a>
         </nav>
     </header>
 
-    <!-- Background Video -->
-    <div class="background">
-        <video class="background-video" autoplay muted loop>
-            <source src="videos/video1.mp4" type="video/mp4">
-            <source src="videos/video1.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+    <!-- Main Container with Grid Layout -->
+    <main class="main-container">
+        
+        <!-- Background Video Wrapper -->
+        <div class="video-container">
+            <video class="background-video" autoplay muted loop playsinline>
+                <source src="videos/video1.mp4" type="video/mp4">
+                <source src="videos/video1.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-filter-overlay"></div>
+            <button class="video-toggle-btn" type="button">Filter Aus</button>
+        </div>
 
-    <!-- Content -->
-    <div class="content">
-        <!-- Section 1 -->
-        <section class="section" data-video="videos/video1.mp4" data-video-webm="videos/video1.webm">
-            <div class="text right">
-                <h1>Thailand Villa Resort</h1>
-                <p>The beautifull Villas on Koh Tao, Thailand.</p>
-            </div>
-            <img class="thumbnail right" src="images/thumbnail1.jpg" alt="Thumbnail 1">
-        </section>
+        <!-- Content Container -->
+        <div class="content-container">
+            <!-- Section 1 -->
+            <section class="section" data-video="videos/video1.mp4" data-video-webm="videos/video1.webm">
+                <div class="section-content right">
+                    <h1>Project Title 1</h1>
+                    <p>A short description of the first project.</p>
+                </div>
+                <img class="thumbnail right" src="images/thumbnail1.jpg" alt="Thumbnail of Project 1">
+            </section>
 
-        <!-- Section 2 -->
-        <section class="section" data-video="videos/video2.mp4" data-video-webm="videos/video2.webm">
-            <div class="text left">
-                <h1>Hier könnte Ihre Werbung stehen</h1>
-                <p>Gib Geld lulz.</p>
-            </div>
-            <img class="thumbnail left" src="images/thumbnail2.jpg" alt="Thumbnail 2">
-        </section>
-    </div>
+            <!-- Section 2 -->
+            <section class="section" data-video="videos/video2.mp4" data-video-webm="videos/video2.webm">
+                <div class="section-content left">
+                    <h1>Project Title 2</h1>
+                    <p>A short description of the second project.</p>
+                </div>
+                <img class="thumbnail left" src="images/thumbnail2.jpg" alt="Thumbnail of Project 2">
+            </section>
+        </div>
+
+    </main>
 
     <!-- Contact Section -->
     <footer id="contact" class="contact">
-        <h2>Kontaktiere Uns!</h2>
+        <h2>Contact Me</h2>
         <form>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Ihre Email" required>
-            <textarea placeholder="Ihre Anfrage" required></textarea>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
             <button type="submit">Send</button>
         </form>
     </footer>
@@ -61,11 +71,11 @@
     <!-- Impressum Section -->
     <section id="impressum" class="impressum">
         <h2>Impressum</h2>
-        <p>Frame-Fabrik
-            Hamburg.</p>
+        <p>Your legal and contact details go here.</p>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

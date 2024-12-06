@@ -1,4 +1,4 @@
-/* General Styling */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     color: #fff;
 }
 
-/* Header Styling */
+/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -23,9 +23,8 @@ body {
     padding: 10px 20px;
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    transform: translateY(0);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -38,7 +37,6 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
-    flex: 1;
 }
 
 .burger-menu {
@@ -46,38 +44,74 @@ body {
     cursor: pointer;
     position: absolute;
     left: 20px;
+    top: 15px;
+    transition: transform 0.3s ease;
+}
+
+.burger-menu.active {
+    transform: rotate(90deg);
 }
 
 .menu {
     position: absolute;
     top: 60px;
-    right: 20px;
+    left: 20px;
     background: rgba(0, 0, 0, 0.9);
-    padding: 10px;
-    display: none;
+    padding: 0;
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0;
     z-index: 1001;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    border-radius: 0 0 5px 5px;
+    opacity: 0;
+}
+
+.menu.active {
+    max-height: 300px;
+    padding: 10px;
+    opacity: 1;
 }
 
 .menu a {
     color: #fff;
     text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
 }
 
-.menu.hidden {
-    display: flex;
+.menu.active a {
+    opacity: 1;
+    transform: translateX(0);
 }
 
-/* Background Video */
-.background {
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Layout */
+.main-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100vh 100vh; /* zwei Sections (Beispiele) */
+    position: relative;
+}
+
+.video-container {
+    grid-row: 1 / 3;
+    grid-column: 1 / 2;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1;
+    z-index: 0;
 }
 
 .background-video {
@@ -85,37 +119,56 @@ body {
     height: 100%;
     object-fit: cover;
     filter: blur(15px) brightness(0.5);
-    transition: filter 0.3s ease-in-out;
+    transition: all 0.7s ease;
+    position: relative;
+    z-index: 1;
 }
 
-.background-video.fullscreen {
-    filter: none;
+.background-video.active {
+    filter: blur(0) brightness(1);
+    transform: scale(1.02);
 }
 
-/* Content Layout */
-.content {
+.video-filter-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 20, 0.2);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.content-container {
+    grid-row: 1 / 3;
+    grid-column: 1 / 2;
     display: flex;
     flex-direction: column;
     gap: 100vh;
+    padding-top: 80px; /* Platz unter dem Header */
 }
 
 .section {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100vh;
     padding: 0 5%;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+    cursor: pointer; /* Wichtig: Der gesamte Bereich ist klickbar */
 }
 
-.text {
+.section-content {
     flex: 3;
 }
 
-.text.right {
+.section-content.right {
     text-align: right;
     margin-right: 20px;
 }
 
-.text.left {
+.section-content.left {
     text-align: left;
     margin-left: 20px;
 }
@@ -126,5 +179,74 @@ body {
     height: auto;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* Animations for removal */
+.section.hide {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* Contact & Impressum */
+.contact, .impressum {
+    padding: 50px 20px;
+    background: #111;
+    min-height: 50vh;
+}
+
+.contact h2, .impressum h2 {
+    margin-bottom: 20px;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    border: none;
+    color: #fff;
+}
+
+.contact button {
+    padding: 10px;
+    background: #444;
+    border: none;
+    color: #fff;
     cursor: pointer;
+}
+
+.contact button:hover {
+    background: #666;
+}
+
+.video-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.video-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
