@@ -26,126 +26,136 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Video popup functionality
     thumbnails.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const videoSrc = sections[index].getAttribute('data-video');
-            const section = sections[index];
-            const title = section.querySelector('h1').textContent;
-            const description = section.querySelector('p').textContent;
-            
-            if (isMobile()) {
-                // Mobile: Direct full screen without animation
-                videoPopup.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Set video source
-                popupVideo.src = videoSrc;
-                
-                // Set video container to full screen immediately
-                gsap.set(videoContainer, {
-                    width: window.innerWidth,
-                    height: window.innerWidth * (9/16),
-                    x: 0,
-                    y: 0,
-                    opacity: 1,
-                    visibility: 'visible'
-                });
-                
-                // Show video and start playing
-                videoContainer.classList.add('active');
-                popupVideo.classList.add('active');
-                closeVideo.classList.add('active');
-                popupVideo.play();
-                
-                // Store reference
-                thumbnail.setAttribute('data-active', 'true');
-                return;
-            }
-            
-            // Desktop version continues with existing animation code...
-            const thumbRect = thumbnail.getBoundingClientRect();
-            
-            // Set video source first
-            popupVideo.src = videoSrc;
-            
-            // Calculate dimensions and spacing
-            const borderSpacing = 60;
-            const elementSpacing = 30;
-            const finalWidth = Math.min(window.innerWidth * 0.9, 1200);
-            const finalHeight = finalWidth * (9/16);
-            const startY = borderSpacing;
-            const finalX = (window.innerWidth - finalWidth) / 2;
-            
-            // Show popup background first
-            videoPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        const section = sections[index];
+        const pullDownIcon = section.querySelector('.pull-down-icon');
+        const sectionContent = section.querySelector('.section-content');
 
-            // Desktop: Set description content and position
-            descriptionBox.querySelector('h2').textContent = title;
-            descriptionBox.querySelector('p').textContent = description;
+        if (isMobile()) {
+            // Add initial bounce animation class
+            pullDownIcon.classList.add('initial-animation');
             
-            // Force description box layout calculation
-            descriptionBox.style.visibility = 'hidden';
-            descriptionBox.style.display = 'block';
-            const descriptionHeight = descriptionBox.offsetHeight;
-            descriptionBox.style.display = '';
-            descriptionBox.style.visibility = '';
+            // Remove animation after it completes
+            setTimeout(() => {
+                pullDownIcon.classList.remove('initial-animation');
+            }, 2000);
 
-            // Set initial position for description box (behind the thumbnail)
-            gsap.set(descriptionBox, {
-                width: finalWidth,
-                x: finalX,
-                y: thumbRect.top + (thumbRect.height / 2),
-                opacity: 0,
-                visibility: 'visible',
-                zIndex: 1
+            // Add click handler for pull-down icon on mobile
+            pullDownIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const videoSrc = sections[index].getAttribute('data-video');
+                
+                if (!sectionContent.classList.contains('show')) {
+                    // Opening state
+                    sectionContent.classList.add('show');
+                    pullDownIcon.classList.add('active');
+
+                    // Show video player
+                    videoPopup.style.display = 'block';
+                    videoPopup.classList.add('active');
+                    
+                    // Set video source and load first frame
+                    popupVideo.src = videoSrc;
+                    popupVideo.preload = 'auto';
+                    
+                    // Position video container exactly where the thumbnail is
+                    const thumbRect = thumbnail.getBoundingClientRect();
+                    const thumbWrapper = thumbnail.closest('.thumbnail-wrapper');
+                    
+                    // Insert video container into the thumbnail wrapper
+                    thumbWrapper.appendChild(videoContainer);
+                    
+                    // Position the video container
+                    videoContainer.style.width = '100%';
+                    videoContainer.style.height = 'auto';
+                    videoContainer.style.top = '0';
+                    videoContainer.style.left = '0';
+                    
+                    // Reset video container transform before inserting
+                    videoContainer.style.transform = 'rotateY(-180deg)';
+                    videoContainer.classList.remove('moved');
+                    
+                    // Force browser reflow
+                    videoContainer.offsetHeight;
+                    
+                    // Step 1: Flip animation
+                    requestAnimationFrame(() => {
+                        thumbnail.classList.add('hidden');
+                        videoContainer.classList.add('active');
+                        videoContainer.style.transform = 'rotateY(0)';
+                        popupVideo.classList.add('active');
+                        closeVideo.classList.add('active');
+                        
+                        // Step 2: Move video up and prepare content
+                        setTimeout(() => {
+                            videoContainer.classList.add('moved');
+                            
+                            // Show content
+                            sectionContent.classList.add('show');
+                            
+                            // Step 3: Slide content into view
+                            requestAnimationFrame(() => {
+                                sectionContent.classList.add('visible');
+                            });
+                        }, 600);
+                    });
+
+                    // Load the first frame
+                    popupVideo.addEventListener('loadeddata', function onLoadedData() {
+                        popupVideo.currentTime = 0;
+                        popupVideo.removeEventListener('loadeddata', onLoadedData);
+                    });
+                    
+                    // Store reference
+                    thumbnail.setAttribute('data-active', 'true');
+                } else {
+                    // Closing state
+                    sectionContent.classList.remove('visible');
+                    pullDownIcon.classList.remove('active');
+                    
+                    // Wait for content to slide back
+                    setTimeout(() => {
+                        videoContainer.classList.remove('moved');
+                        
+                        // Wait for movement to complete
+                        setTimeout(() => {
+                            sectionContent.classList.remove('show');
+                            
+                            // Reverse flip animation
+                            videoContainer.style.transform = 'rotateY(-180deg)';
+                            thumbnail.style.transform = 'rotateY(0)';
+                            thumbnail.classList.remove('hidden');
+                            
+                            // Clean up after animation
+                            setTimeout(() => {
+                                popupVideo.pause();
+                                popupVideo.classList.remove('active');
+                                videoContainer.classList.remove('active');
+                                videoPopup.style.display = 'none';
+                                videoPopup.classList.remove('active');
+                                closeVideo.classList.remove('active');
+                                popupVideo.src = '';
+                                thumbnail.removeAttribute('data-active');
+                                // Reset transforms
+                                videoContainer.style.transform = '';
+                                thumbnail.style.transform = '';
+                                // Remove video container
+                                if (videoContainer.parentNode) {
+                                    videoContainer.parentNode.removeChild(videoContainer);
+                                }
+                            }, 600);
+                        }, 300);
+                    }, 600);
+                }
             });
 
-            // Set initial position and size of video container to match thumbnail
-            gsap.set(videoContainer, {
-                width: thumbRect.width,
-                height: thumbRect.height,
-                x: thumbRect.left,
-                y: thumbRect.top,
-                opacity: 1,
-                zIndex: 2
+            // Remove the thumbnail click handler for mobile
+            thumbnail.style.pointerEvents = 'none';
+        } else {
+            // Desktop version continues with existing code...
+            thumbnail.addEventListener('click', (e) => {
+                // ... existing desktop click handler code ...
             });
-
-            // Make video container and video visible
-            videoContainer.classList.add('active');
-            popupVideo.classList.add('active');
-            
-            // Start playing the video
-            popupVideo.play();
-
-            // Desktop: Animate both video and description
-            const tl = gsap.timeline();
-            
-            tl.to(descriptionBox, {
-                y: startY + finalHeight + elementSpacing,
-                opacity: 1,
-                duration: 0.5,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    descriptionBox.classList.add('active');
-                }
-            }, 0);
-
-            tl.to(videoContainer, {
-                width: finalWidth,
-                height: finalHeight,
-                x: finalX,
-                y: startY,
-                duration: 0.5,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    closeVideo.classList.add('active');
-                }
-            }, 0);
-
-            // Store reference to clicked thumbnail
-            thumbnail.setAttribute('data-active', 'true');
-        });
+        }
     });
 
     function closeVideoPlayer() {

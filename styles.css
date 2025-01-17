@@ -178,6 +178,7 @@ body {
     border-radius: 15px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    text-align: center !important;
 }
 
 .section-content h1 {
@@ -187,6 +188,7 @@ body {
     line-height: 1.2;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center !important;
 }
 
 .section-content p {
@@ -197,6 +199,8 @@ body {
     font-weight: 400;
     letter-spacing: 0.5px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: center !important;
+    margin: 0 auto;
 }
 
 .section-content.right {
@@ -240,71 +244,218 @@ body {
         flex-direction: column;
         padding: 20px;
         gap: 20px;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 80px;
+        position: relative;
+        z-index: 5;
+        overflow: visible;
+        text-align: center;
     }
 
-    .section-content {
-        padding: 20px;
-        max-width: 100%;
-    }
-
-    .section-content h1 {
-        font-size: 2rem;
-    }
-
-    .section-content p {
-        font-size: 1rem;
+    .thumbnail-wrapper {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        height: auto;
+        perspective: 1000px;
+        padding-bottom: 35px; /* Just enough space for the button */
     }
 
     .thumbnail {
         width: 100%;
-        max-height: none;
+        height: auto;
         aspect-ratio: 16/9;
         order: 1 !important;
+        pointer-events: none;
+        transition: transform 0.6s ease;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        transform: rotateY(0);
+        margin: 0 auto;
     }
 
-    .section-content.right,
-    .section-content.left {
-        text-align: center;
-        margin: 0;
-        order: 2 !important;
+    .thumbnail.hidden {
+        transform: rotateY(180deg);
+        opacity: 0;
     }
 
     /* Video Player Mobile Styles */
+    .video-player-popup {
+        position: absolute;
+        width: 100%;
+        pointer-events: none;
+        background: none !important;
+    }
+
     .video-player-container {
-        border-radius: 0;
-    }
-
-    .video-description-box {
-        border-radius: 0;
-        padding: 15px;
+        position: absolute !important;
         width: 100% !important;
-        left: 0 !important;
+        aspect-ratio: 16/9;
+        border-radius: 15px;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        background: #000;
+        pointer-events: auto;
+        z-index: 8;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        transition: transform 0.6s ease, opacity 0.3s ease;
+        transform: rotateY(-180deg);
+        left: 0;
+        top: 0;
     }
 
-    .close-video {
-        top: 10px;
-        right: 10px;
+    .video-player-container.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .video-player-container.moved {
+        transform: translateY(-20px) rotateY(0);
+    }
+
+    .section-content {
+        padding: 15px;
+        width: 80%;
+        margin: 0 auto;
+        display: none;
         background: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 15px;
+        text-align: center;
+        opacity: 0;
+        position: relative;
+        margin-top: 10px;
+        z-index: 7;
+        transition: opacity 0.3s ease;
+    }
+
+    .section-content h1 {
+        text-align: center !important;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .section-content p {
+        text-align: center !important;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* Override any left/right alignment classes */
+    .section-content.left,
+    .section-content.right {
+        text-align: center !important;
+    }
+
+    /* Ensure any nested elements are also centered */
+    .section-content * {
+        text-align: center !important;
+    }
+
+    .section-content.show {
+        display: block;
+    }
+
+    .section-content.visible {
+        opacity: 1;
+    }
+
+    .thumbnail-wrapper {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        height: auto;
+        perspective: 1000px;
+        padding-bottom: 35px;
+    }
+
+    .video-player-container.moved {
+        transform: translateY(-20px) rotateY(0);
+    }
+
+    /* Remove any transforms or absolute positioning that might affect layout */
+    .section-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: visible;
+    }
+
+    .pull-down-icon {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2;
     }
 
-    .popup-video {
-        width: 100vw;
-        height: 100%;
-        object-fit: contain;
+    .pull-down-icon:hover {
+        background: rgba(0, 0, 0, 0.5);
+        transform: translateX(-50%) scale(1.1);
     }
 
-    /* Prevent text selection during swipe */
-    .video-player-container,
-    .video-description-box {
-        user-select: none;
-        -webkit-user-select: none;
+    .pull-down-icon.active {
+        transform: translateX(-50%) rotate(180deg);
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .pull-down-icon.active:hover {
+        transform: translateX(-50%) rotate(180deg) scale(1.1);
+    }
+
+    /* Add initial bounce animation */
+    .pull-down-icon.initial-animation {
+        animation: bounceArrow 2s ease infinite;
+    }
+
+    @keyframes bounceArrow {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-8px);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-4px);
+        }
+    }
+
+    /* Override background video z-index */
+    .video-container {
+        z-index: 1;
+    }
+
+    .background-video {
+        z-index: 2;
+    }
+
+    .video-filter-overlay {
+        z-index: 3;
+    }
+
+    /* Container for the entire section content */
+    .section-wrapper {
+        display: none;
     }
 }
 
@@ -319,10 +470,12 @@ body {
     padding: 50px 20px;
     background: #111;
     min-height: 50vh;
+    text-align: center;
 }
 
 .contact h2, .impressum h2 {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .contact form {
@@ -330,6 +483,7 @@ body {
     flex-direction: column;
     gap: 10px;
     max-width: 300px;
+    margin: 0 auto;
 }
 
 .contact input, .contact textarea {
@@ -446,15 +600,20 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     margin-bottom: 15px;
-    text-align: center;
+    text-align: center !important;
 }
 
 .video-description-box p {
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-    margin: 0;
-    text-align: center;
-    max-width: 800px;
     margin: 0 auto;
+    text-align: center !important;
+    max-width: 800px;
+}
+
+/* Remove left/right alignment classes */
+.section-content.right,
+.section-content.left {
+    text-align: center !important;
 }
