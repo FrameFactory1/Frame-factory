@@ -1,0 +1,120 @@
+#contact {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-inline: var(--golden-big-half);
+    /* Formatierung */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(1.875rem);
+    -webkit-backdrop-filter: blur(.5rem);
+    border-radius: .9375rem;
+}
+
+
+.contact-form {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2.25rem;
+}
+
+#name-container {
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    gap: 5%;
+}
+
+#name-container label {
+    width: 100%;
+}
+
+.contact-form input {
+    /* Layout */
+    height: 3.4375rem;
+    width: 100%;
+    padding-block: .75rem;
+    padding-inline: 1.0938rem;
+    margin-bottom: .9375rem;
+    /* Formatierung */
+    font-weight: 400;
+    font-size: 1rem;
+    background-color: white;
+    line-height: 1.25rem;
+    border-radius: .875rem;
+    letter-spacing: .0313rem;
+    text-align: left;
+    text-shadow: .0625rem .0625rem .125rem rgba(0, 0, 0, 0.2);
+}
+
+.contact-form textarea {
+  width: 100%;
+  min-height: 6.4375rem;
+  padding: .75rem 1.0938rem;
+  font-size: 1rem;
+  background-color: white;
+  border-radius: .875rem;
+  resize: vertical;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  margin-bottom: .9375rem;
+  font-weight: 400;
+  letter-spacing: .0313rem;
+  text-shadow: .0625rem .0625rem .125rem rgba(0, 0, 0, 0.2);
+  border: none; /* falls gewünscht */
+}
+
+
+#nachricht {
+    height: 6.4375rem;
+     resize: vertical; /* oder 'none' wenn nicht vom User veränderbar */
+  overflow-y: auto;
+    white-space: pre-wrap;  /* WICHTIG: erlaubt Zeilenumbruch */
+  overflow-wrap: break-word; /* bricht lange Wörter */
+}
+
+.button_submit:hover,
+.contact-form input:hover {
+    /* Formatierung */
+    box-shadow: 0rem 0rem .1875rem 0rem #212529;
+    transform: scale(1.009);
+}
+
+#contact h2 {
+    /* Formatierung */
+    text-align: center;
+    color: #ffffff;
+    text-shadow: .125rem .125rem .25rem rgba(0, 0, 0, 0.3);
+}
+
+#contact button {
+    /* Layout */
+    width: 100%;
+    height: 3.375rem;    
+    /* Formatierung */
+    color: white;
+    background: red;
+    border-radius: .625rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: .0313rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: .0625rem .0625rem .125rem rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#contact button:hover {
+    /* Formatierung */
+    background: #666;
+}

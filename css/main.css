@@ -1,0 +1,296 @@
+/* === Main-Section  === */
+    #main-container {
+        /* Layout */
+        display: block;
+        position: relative;
+        width: 100%;
+        z-index: var(--z-index-footer);
+    }
+
+/* === Inhaltscontainer === */
+    #content-container,
+    #projects {
+        /* Layout */
+        display: flex;
+        position: relative;
+        z-index: var(--z-index-footer); 
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #projects {
+        gap: 20vh;
+    }
+
+    #projects::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+    }
+
+/* === Section === */
+    .section {
+        /* Layout */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--section-gap);
+        width: 90%;
+        min-width: 0;
+        height: 100vh;
+        margin: 0;
+        padding-top: var(--header-height);
+        /* Formatierung */
+        transition: transform 0.7s ease, opacity 0.7s ease;
+    }
+
+/* === Vertauschte Reihenfolge je Section === */
+    section:nth-child(odd) .section-content {
+        order: 2;
+    }
+
+    section:nth-child(even) .section-content {
+        order: 1;
+    }
+
+    section:nth-child(odd) .thumbnail-wrapper {
+        order: 1;
+    }
+
+    section:nth-child(even) .thumbnail-wrapper {
+        order: 2;
+    }
+
+/* === Hero-Banner === */
+
+#hero-banner,
+#about {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding-inline: 0;
+}
+
+#hero-banner {
+    padding-inline: 0;
+    justify-content: flex-start;
+}
+
+#about {
+    align-items: center;
+    gap: 0;
+    padding: 6rem var(--framing-space-inline);
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.background-image {
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  min-height: 100%;
+  aspect-ratio: 16/9;
+  z-index: 0;
+}
+
+#hero-content,
+#about-us-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  z-index: var(--z-index-footer);
+  opacity: 1;
+  width: var(--golden-small);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+#hero-content {
+    width: var(--golden-small);
+      margin: 6rem;
+}
+
+#about-us-container {
+    width: 50%;
+    margin: 8rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#about img {
+    width: 15%;
+    height: auto;
+}
+
+#hero-content h1,
+#about-us-container h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: left;
+}
+
+#hero-content p,
+#about-us-container p{
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+#hero-content .head {
+    font-style: italic;
+}
+
+#hero-content .btn {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+  text-decoration: none;
+}
+
+#hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1) 6rem, transparent 100%);
+  z-index: 1;
+}
+
+
+/* === About Us === */
+    #about {
+        /* Layout */
+        width: 100%;
+        background-color: black;
+    }
+
+
+/* === Video Beschreibungen === */
+    .section-content {
+        /* Layout */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        width: var(--golden-small);
+        min-width: 0;
+        height: auto;
+        max-height: 90%;
+        padding: 3%;
+        /* Formatierung */
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: .9375rem;
+        backdrop-filter: blur(1.875rem);
+        -webkit-backdrop-filter: blur(.5rem);
+    }
+
+    .pull-down-icon {
+        display: none;
+    }
+
+    .section h1 {
+        /* Layout */
+        margin-bottom: 0.5em;
+        /* Formatierung */
+        color: #ffffff;
+        text-align: left;
+        text-shadow: .125rem .125rem .25rem rgba(0, 0, 0, 0.3);
+    }
+
+    .section h2 {
+        /* Layout */
+        margin-bottom: 0.3em;
+        /* Formatierung */
+        color: #ffffff;
+        text-align: left;
+        text-shadow: .125rem .125rem .25rem rgba(0, 0, 0, 0.3);
+    }
+
+
+    .section p + p {
+        /* Layout */
+        margin-top: 0.6em;
+    }
+
+    .section p {
+        /* Formatierung */
+        color: #f0f0f0;
+        text-align: left;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        font-size: clamp();
+    }
+
+/* === Thumbnails === */
+    .thumbnail-wrapper {
+        /* Layout */
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: var(--golden-big);
+            min-width: 0;
+            height: auto;
+            margin: 3%;
+        /* Formatierung */
+            transition: transform 0.3s ease;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+    }
+
+    .thumbnail {
+        /* Layout */
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        /* Formatierung */
+        cursor: pointer;
+        border-radius: 15px;        
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        transform-style: preserve-3d;
+        transition: all 0.3s ease;
+    }
+
+    .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    width: 18vh;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    }
+
+.video-preview:hover .play-button {
+  background: #fe407d;
+  color: white;
+  transform: translate(-50%, -50%) scale(1.1);
+}

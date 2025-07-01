@@ -1,0 +1,245 @@
+/* === 2. Video Player Popup === */
+        .video-player-popup {
+            /* Layout / Positionierung */
+                display: none;
+                position: fixed;
+            /* Box-Modell */
+                width: 100%;
+                height: 100%;
+            /* Flex spezifisch (wenn nötig) */
+                flex-direction: column;
+        }
+
+
+        .video-player-popup.active {
+            /* Layout / Positionierung */
+                inset: 0;
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: var(--z-index-modal);
+            /* Flex spezifisch */
+                justify-content: center;
+                align-items: center;
+
+        }
+
+
+        .video-player-container {
+            /* Layout / Positionierung */
+                display: none;
+                position: fixed;
+                overflow: hidden;
+                transform-origin: center;
+                transform-style: preserve-3d;
+            /* Box-Modell */
+                padding: 0 0;
+        }
+
+
+        .video-player-container.active {
+            /* Layout / Positionierung */
+                display: inline-block;
+                z-index: 2500;
+        }
+
+
+        .popup-video {
+            /* Layout / Positionierung */
+                display: none;
+            /* Box-Modell */
+                width: auto;
+                max-width: 90vw;
+                height: auto;
+                max-height: 80vh;
+                margin: 0 0;
+                padding: 0 0;
+        }
+
+
+        .popup-video.active {
+            /* Layout / Positionierung */
+                display: flex;
+                z-index: 2500;
+        }
+
+        .pull-down-icon {
+            display: none;
+        }
+
+
+        /* === 3. Close-Button === */
+        .close-video {
+            /* Layout / Positionierung */
+                display: none;
+                position: absolute;
+                top: 7px;
+                right: 7px;
+            /* Box-Modell */
+                width: 10px;
+                height: 10px;
+                padding: 3% 3%;
+        }
+
+        .close-video.active {
+            /* Layout / Positionierung */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: var(--z-index-modal);
+        }
+
+
+            /* === 3. Description Box === */
+
+            .video-description-box {
+                /* Layout / Positionierung */
+                    position: fixed;
+                    visibility: hidden;
+                    transform: translateY(20px);
+                /* Box-Modell */
+                    width: 90%;
+                    max-width: 1200px;
+                    padding: 20px;
+            }
+
+            .video-description-box h2 {
+                /* Box-Modell */
+                margin-bottom: 15px;
+            }
+
+            .video-description-box p {
+                /* Box-Modell */
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+/* === Pop Up Video Player === */
+
+.video-player-popup {
+    /* Farbe & Hintergrund */
+      background: rgba(0, 0, 0, 0);
+    /* Effekte / Animationen */
+       
+}
+
+
+.video-player-popup.active {
+    /* Farbe & Hintergrund */
+        background: rgba(0, 0, 0, 0.9);
+    /* Sonstiges / Overrides */
+        visibility: visible;
+}
+
+
+.video-player-container {
+      /* Farbe & Hintergrund */
+      background: #000;
+      /* Rahmen / Dekoration */
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      /* Effekte / Animationen */
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      /* Sonstiges / Overrides */
+      pointer-events: auto;
+}
+
+
+.video-player-container.active {
+      /* Effekte / Animationen */
+        opacity: 1;
+}
+
+
+.popup-video {
+      /* Effekte / Animationen */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+}
+
+
+.popup-video.active {
+      /* Effekte / Animationen */
+        opacity: 1;
+}
+
+
+.video-player-container.moved {
+      /* Effekte / Animationen */
+        transform: translateY(-20px) rotateY(0);
+}
+
+
+/* === Close-Button === */
+.close-video {
+    /* Typografie */
+        font-weight: 100;
+        font-size: 2.2rem;
+    /* Farbe & Hintergrund */
+        background: none;
+        color: white;
+      /* Rahmen / Dekoration */
+        border: none;
+        text-shadow: 2px 2px 5px black;
+      /* Effekte / Animationen */
+        opacity: 0;
+        transition: all 0.3s ease;
+      /* Sonstiges / Overrides */
+        cursor: pointer;
+}
+
+
+.close-video:hover {
+      /* Effekte / Animationen */
+      transform: scale(1.1);
+}
+
+.close-video.active {
+  /* Effekte / Animationen */
+    opacity: 1;
+}
+
+/* === Description Box === */
+
+.video-description-box {
+      /* Typografie */
+      color: white;
+      text-align: center;
+      /* Farbe & Hintergrund */
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      /* Rahmen / Dekoration */
+      border-radius: 15px;
+      /* Effekte / Animationen */
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.video-description-box.active {
+      /* Layout / Positionierung */
+      visibility: visible;
+      /* Effekte / Animationen */
+      opacity: 1;
+      transform: translateY(0);
+}
+
+
+.video-description-box h2 {
+      /* Typografie */
+      font-size: 1.8rem;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+}
+
+
+.video-description-box p {
+      /* Typografie */
+      font-size: 1rem;
+      font-family: 'Raleway', sans-serif;
+      line-height: 1.6;
+      text-align: center;
+}

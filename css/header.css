@@ -1,0 +1,117 @@
+/* === Header === */
+    .header {
+        /* Layout */
+        padding-block: var(--framing-space-block);
+        padding-inline: var(--framing-space-inline);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: var(--z-index-header);
+        top: 0;
+        left: 0;
+        width: 100%;
+        /* Formatierung */
+        transition: transform 0.3s ease-in-out;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+    }
+
+/* === Eigeklappter Header === */    
+    .header.hidden {
+        /* Formatierung */
+        transform: translateY(-100%);
+    }
+
+/* === Header Logo === */
+    #headerLogo {
+        /* Layout */
+        object-fit: contain;
+        height: var(--header-logo-height);
+    }
+
+/* === Burger-Menü Icon Layout === */
+    #burger-menu-container {
+        /* Layout */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translateY(-50%);
+        width: 9vh;
+        height: var(--header-height);
+        /* Formatierung */
+        cursor: pointer;
+    }
+
+
+/* === Burger-Menü Icon Formatierung und Transition -> Active === */
+    #burger-menu {
+        /* Formatierung */ 
+        transform-origin: center center;
+        transition: transform 0.3s ease;
+        font-size: var(--burger-menu-size);
+    }
+
+/* === Burger-Menü Icon Transition === */
+    #burger-menu.active {
+        /* Formatierung */
+        transform: rotate(90deg);
+    }
+
+/* === Menü === */
+    #menu {
+        /* Layout */
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        z-index: var(--z-index-header);
+        top: var(--header-height);
+        left: 0;
+        opacity: 0;
+        overflow: hidden;
+        max-height: 0;
+        /* Formatierung */
+        transition: all 0.3s ease-in-out;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 0 0 5px 5px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+/* === Menü aufklappen === */
+    #menu.active {
+        /* Layout */
+        max-height: 40vh;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* === Navigationslinks === */
+    #menu a {
+        /* Layout */
+        padding-block: var(--menu-space-block);
+        padding-inline: var(--menu-space-inline);
+        font-size: auto;
+        /* Formatierung */
+        opacity: 0;
+        transform: translateX(-2vw);
+        transition: opacity 0.3s ease var(--delay, 0s), ;
+        color: #fff;
+        text-decoration: none;
+    }
+
+/* === Schrifteffekte bei Aktivierung des Menü === */
+    #menu.active a {
+        /* Formatierung */
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 0.6s ease var(--delay, 0s);
+    }
+
+/* === Hovereffekte Menülinks === */
+    #menu a:hover {
+        /* Formatierung */
+        background: rgba(255, 255, 255, 0.1);
+    }

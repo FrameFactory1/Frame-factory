@@ -1,0 +1,57 @@
+#background-video-container {
+    /* Layout */
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: var(--z-index-background-video);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    /* Formatierung */
+    background-color: black;
+}
+
+#background-video-overlay {
+    /* Layout */
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#background-video {
+    /* Layout */
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    width: auto;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+    /* Formatierung */
+    opacity: 0;
+    transition: opacity 1s ease, transform 0.5s ease;
+}
+
+#background-video.active {
+    /* Layout */
+    z-index: var(--z-index-background-video-active);
+    /* Formatierung */
+    opacity: 1;
+    transform: scale(1.02);
+    transition: opacity 1s ease, transform 0.5s ease;
+}
+
+#background-video-overlay {
+    /* Layout */
+    height: 100vh;
+    z-index: var(--z-index-background-video-overlay);
+    /* Formatierung */
+    backdrop-filter: blur(4px) brightness(0.8);
+    -webkit-backdrop-filter: blur(4px) brightness(0.8);
+    background: rgba(255, 255, 255, 0.05);
+}

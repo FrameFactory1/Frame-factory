@@ -1,93 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Frame Factory</title>
+    <!-- Titel & Beschreibung für Suchmaschinen -->
+  <title>Frame-Fabrik | Videoproduktion aus Hamburg</title>
+  <meta name="description" content="Starke Bilder, die Emotionen bewegen. Frame-Fabrik aus Hamburg produziert ästhetische Musikvideos, FPV-Aufnahmen und visuelle Geschichten mit Stil." />
+
+  <!-- Keywords (nicht mehr entscheidend für SEO, aber optional möglich) -->
+  <meta name="keywords" content="Videoproduktion Hamburg, Musikvideo, FPV Drohne, Imagefilm, Frame-Fabrik, Kamera, Schnitt, Filmproduktion" />
+
+  <!-- Autor -->
+  <meta name="author" content="Frame-Fabrik – Marvin & Lars" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.PNG">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/contact.css"> <!-- Contact Reset -->
+    <link rel="stylesheet" href="./CSS/general.css"> <!-- Layout -->
+    <link rel="stylesheet" href="./css/header.css"> <!-- Header  -->
+    <link rel="stylesheet" href="./css/main.css"> <!-- Main  -->
+    <link rel="stylesheet" href="./css/backgroundvideo.css"> <!-- Hintergrundvideo -->
+    <link rel="stylesheet" href="./css/footer.css"> <!-- Footer -->
+    <link rel="stylesheet" href="./css/videoplayerpopup.css"> <!-- Video Player Popup -->
+    <!--<link rel="stylesheet" href="./css/responsive.css"> mobile -->
 </head>
 <body>
-    <!-- Sticky Header -->
-    <header class="header">
-        <div class="burger-menu">☰</div>
-        <div class="branding">Frame Factory</div>
-        <nav class="menu">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-            <a href="#impressum">Impressum</a>
-        </nav>
-    </header>
 
-    <!-- Main Container with Grid Layout -->
-    <main class="main-container">
-        
-        <!-- Background Video Wrapper -->
-        <div class="video-container">
-            <!-- Erstes Video -->
-            <video class="background-video" autoplay muted loop playsinline>
-                <source src="videos/video1.mp4" type="video/mp4">
+    <!--
+    <div id="loading-video-container" class="active">
+            <video id="loading-video" class="active" autoplay muted loop playsinline>
+                <source src="/videos/logoanimation2.mp4" type="video/mp4">
             </video>
-            <!-- Zweites Video -->
-            <video class="background-video video2" autoplay muted loop playsinline>
-                <source src="videos/video2.mp4" type="video/mp4">
-            </video>
-            <div class="video-filter-overlay"></div>
         </div>
+    -->
+    <div id="page-wrapper" class="hidden">
 
-        <!-- Content Container -->
-        <div class="content-container">
-            <!-- Section 1 -->
-            <section class="section" data-video="videos/video1.mp4">
-                <div class="thumbnail-wrapper">
-                    <img class="thumbnail right" src="images/thumbnail1.jpg" alt="Thumbnail of Project 1">
-                    <div class="pull-down-icon">▼</div>
-                </div>
-                <div class="section-content right">
-                    <h1>Thailand Pool Villas</h1>
-                    <p>Mit einem fließenden FPV-Flug fängt dieses Video die Eleganz und Atmosphäre einer Villa in Thailand ein. Jede Szene wurde mit Präzision geplant und umgesetzt, um die Architektur und das Ambiente des Ortes auf eine immersive und dynamische Weise erlebbar zu machen. Perfekt für Kunden, die außergewöhnliche Perspektiven und hochwertige visuelle Erlebnisse suchen.</p>
-                </div>
-            </section>
+        <!-- Sticky Header -->
+        <header id="header" class="header">
+            <div id="burger-menu-container">
+                <div id="burger-menu" class="burger-menu">☰</div>
+            </div>
+            <img id="headerLogo" src="/headerLogo.webp">
+            <nav id="menu" class="menu">
+                <a href="#hero-banner">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="impressum.html">Impressum</a>
+            </nav>
+        </header>
 
-           
+
+        <!-- Main Container with Layout -->
+        <main id="main-container">
+            
+            <!-- Background Video Wrapper -->
+            <div id="background-video-container" class="background-video-container">
+                <div id ="background-video-overlay"> </div>
+                <video id="background-video" autoplay muted loop playsinline> </video> <!-- Source ist das Video der jeweiligen Section -->
+            </div>
+
+
+            <div id="content-container" class="content-container">
+
+
+                <!-- === Home === -->
+                 <section class="section" id="hero-banner">
+                        <img class="background-image" src="./thumbnails/thumbnailvideo1.png" alt="Home Background-Image"></img>
+                    <div id="hero-content">
+                        <p class="head"> >WIR SIND FRAME-FABRIK< </p>
+                        <h1> STARKE BILDER, DIE EMOTIONEN BEWEGEN.</h1>
+                        <p>Videografen aus Hamburg mit Leidenschaft für ästhetische, moderne Produktionen. Von Musikvideo bis FPV-Flythroughs:
+                            <br> Wir erzählen visuelle Geschichten, die im Kopf bleiben.</p>
+                        <a href="#about" class="btn">About Us</a>
+                    </div>
+                 </section>
+
+                <!-- === About Us === -->
+                <section class="section" id="about"> <!-- Für ein anderes Hintergrund Video kannst du hier einfach data-video ändern oder entfernen -->
+                    <div id="about-us-container"> 
+                        <h1> About Us </h1>
+                        <p>  Wir sind Marvin und Lars – zwei Videografen aus Hamburg mit einem gemeinsamen Blick für starke Bilder und detailreiche Inszenierung. Unter dem Namen Frame-Fabrik bündeln wir unsere Erfahrungen aus Kameraarbeit, Schnitt und Drohnenflug – sowohl klassisch als auch mit FPV – zu modernen, hochwertigen Videoproduktionen.</p>
+                            <p>Ob Musikvideos, Imagefilme oder Autoaufnahmen: Wir setzen Projekte um, die nicht nur visuell überzeugen, sondern auch die Botschaft transportieren. Unser Fokus liegt auf klaren Bildern, emotionaler Tiefe und einer Ästhetik, die hängen bleibt – perfekt für Social Media, Websites oder Events.
+                            Neben klassischen Produktionen entstehen viele Ideen auch unterwegs – so wie ein spontaner Immobilien-Flythrough in Thailand, den wir im Urlaub umgesetzt haben.</p>
+                            <p>Wir arbeiten mit kleinen Unternehmen, Bands oder Privatpersonen zusammen – überall dort, wo starke Bilder etwas bewegen sollen. Hamburg ist unser Ausgangspunkt – aber wir sind offen für Projekte weltweit.</p>
+                        </p>
+                    </div>
+                    <img src="logo.png"> </img>
+                </section>
+
+            <!-- === Videos === -->
+                <!-- Section 1 -->
+            <div id="projects">
+                <section class="section project" data-video="./videos/video1.mp4"> <!-- Data-Video hier, da background-video sich nach der section ausrichtet -->
+                    <div class="thumbnail-wrapper">
+                        <img class="thumbnail" src="/thumbnails/thumbnailvideo1.png" alt="Thumbnail of Project 1">
+                    </div>
+                    <div class="section-content">    
+                        <h1>Thailand Pool Villa</h1>
+                        <p>Mit einem fließenden FPV-Flug fängt dieses Video die Eleganz und Atmosphäre einer Villa in Thailand ein...</p>
+                        <div class="pull-down-icon">▼</div> 
+                    </div>
+
+                </section>
+
+                <!-- Section 2 -->
+                <section class="section project" data-video="./videos/video2.mp4">  
+
+                    <div class="thumbnail-wrapper">
+                            <img class="thumbnail" src="/thumbnails/thumbnailvideo2.jpg" alt="Thumbnail of Project 2">   
+                        </div>
+                        <div class="section-content">
+                            <h1>24h-Rennen Nürburgring 2024</h1>
+                            <h2>Rennsport aus nächster Nähe</h2>
+                            <p>Dieses Video entstand als freies Projekt beim 24h-Rennen am Nürburgring 2024. Ohne Auftrag, aber mit viel Leidenschaft für Motorsport und visuelle Inszenierung. Die Aufnahmen sind größtenteils handheld gefilmt, mit fließenden Übergängen und einem cineastischen Look – direkt an der Strecke, nah an der Action.</p>
+                            <p>Ziel war es, die Atmosphäre greifbar zu machen: das Dröhnen der Motoren, die Spannung in der Luft, die Dynamik des Rennens.</p>
+                            <p>Für alle, die professionell gefilmte Motorsport-Videos schätzen – oder selbst Interesse an hochwertiger Auto-Videografie haben.</p>
+                            <div class="pull-down-icon">▼</div> 
+                    </div>
+
+                </section>
+
+
+                <!-- Section 3 -->
+                <section class="section project" data-video="./videos/video3.mp4">
+                    <div class="thumbnail-wrapper">
+                        <img class="thumbnail" src="/thumbnails/thumbnailvideo3.png" alt="Thumbnail of Project 3">
+                    </div>
+                    <div class="section-content">
+                            <h1>Musikvideo für I Am The Deceiver</h1>
+                            <h2>Rohe Performance, visuell verdichtet</h2>
+                            <p>Für die Metalcore-Band I Am The Deceiver entstand dieses Musikvideo als Komplettproduktion – von Konzeption und Lichtgestaltung bis zum finalen Schnitt. Gedreht wurde in einer Hamburger Elbvilla, die mit ihrem rauen Charakter die passende Kulisse für den düsteren, druckvollen Sound bot.</p>
+                            <p>Im Mittelpunkt steht eine reine Band-Performance – ganz ohne erzählerische Ablenkung, dafür mit einem klaren Fokus auf Atmosphäre, Dynamik und Bildkomposition. Handkamera-Einsatz, gezielte Lichtstimmungen und ein dunkler, mystischer Farblook verstärken das Gefühl von Unmittelbarkeit.</p>
+                            <p>Kleine animierte Elemente und kreative Übergänge ergänzen das Gesamtbild subtil und sorgen für flüssige Szenenwechsel, ohne den rohen Charakter der Musik zu verlieren.</p>
+                            <div class="pull-down-icon">▼</div> 
+                    </div>
+
+                </section>
+            </div>
+            
+                <!-- Contact Section -->
+                 <section class="section" id="contact" action="https://formsubmit.co/framefactorylars@gmail.com" method="POST">
+                    <!--<div id="contact-container"> -->
+                        <h1>LET'S WORK TOGETHER!</h1>
+                            <form class ="contact-form">
+                                <div id="name-container">
+                                    <label>
+                                        <input required="" placeholder="Vorname" type="text" class="input-field">
+                                    </label>
+                                    <label>
+                                        <input required="" placeholder="Nachname" type="text" class="input-field">
+                                    </label>
+                                </div>
+                                <label>
+                                    <input required="" placeholder="E-Mail" type="text" class="input-field">
+                                </label>
+                                <label>
+                                    <input required="" placeholder="Telefonnummer" type="text" class="input-field">
+                                </label>
+                                <label>
+                                      <textarea id="nachricht" name="Nachricht" placeholder="Nachricht" required></textarea>
+                                </label>
+                                <button type="submit" class="button_submit">Abschicken</button>
+                                <!--To-Do: action-Attribut oder Method-->
+                            </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        
+        <footer id="footer">
+            <!-- Impressum Section -->
+            <p>© 2025 Frame Factory · Hamburg</p>
+            <a href="#impressum">Impressum</a>
+        </footer>
+    </div>
 
     <!-- Video Player Popup -->
-    <div class="video-player-popup">
-        <div class="video-player-container">
-            <video class="popup-video" controls>
+    <div id="video-player-popup" class="video-player-popup">
+        <div id="video-player-container" class="video-player-container">
+            <video id="popup-video" class="popup-video" controls>
                 <source src="" type="video/mp4">
             </video>
-            <button class="close-video">×</button>
+            <button id="close-video" class="close-video">×</button>
         </div>
-        <div class="video-description-box">
+        <div id="video-description-box" class="video-description-box">
             <h2></h2>
             <p></p>
         </div>
     </div>
 
-    <!-- Contact Section -->
-    <footer id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </footer>
-
-    <!-- Impressum Section -->
-    <section id="impressum" class="impressum">
-        <h2>Impressum</h2>
-        <p>Your legal and contact details go here.</p>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>

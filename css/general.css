@@ -1,0 +1,123 @@
+/* === Variablen === */
+    :root {
+        /* goldener Schnitt */
+        --golden-small: 38.2%;
+        --golden-big: 61.8%;
+        --golden-small-half: calc(var(--golden-small) * 0.5);
+        --golden-big-half: calc(var(--golden-big) * 0.5);
+
+        /* Header und Footer Padding */
+        --framing-space-block: clamp( 1.85vh,  1.85vh,  1.85vh); /* oben & unten: (untere Grenze bei kleinen Bildschirmen, wächst Standardmäßig mit Bildschirmgröße, obere Grenze der Höhe bei großen Bildschirmen) */
+        --framing-space-inline: clamp(16px, 4vw, 40px); /* analog für rechts & links */
+
+        /* Logo Höhe */
+        --header-logo-height: clamp(6vh, 6vh, 6vh);
+
+        /* Header Höhe */
+        --header-height: calc(var(--header-logo-height) + 2 * var(--framing-space-block));
+        --burger-menu-size: calc(var(--header-logo-height)*0.5);
+        --footer-height: calc(var(--header-height) + var(--framing-space-block));
+
+        /* Menu */
+        --menu-space-block: clamp(8px, 1.5vh, 20px);
+        --menu-space-inline: clamp(12px, 1.8vw, 32px);
+        --menu-width: clamp(200px, 11vw, 420px);
+
+        /* Section */
+        --section-height: calc(100vh - var(--header-height));
+        --section-gap: 7%;
+        --section-children-margin: calc(var(--section-gap)* 0.5);
+        --golden-thumb: calc(var(--golden-big - var(--section-children-margin)));
+        --golden-content: calc(var(--golden-small - (var(--section-gap) * 0.5)));
+
+        --pull-down-size: 4.5vw;
+        --pull-down-margin-inline: calc(50%-(0.5 * var(--pull-down-size)));
+        --pull-down-font-size: calc(var(--pull-down-size)- var(--pull-down-margin-inline));
+
+        /* z-Indizes */  
+        --z-index-background-video: 0; /* auch in JS -> backgroundSwitcher.js festgelegt */
+        --z-index-background-video-active: 5; /* auch in JS -> backgroundSwitcher.js festgelegt */
+        --z-index-background-video-overlay: 6;
+        --z-index-footer: 20; /* Footer und Content-Container */
+        --z-index-dropdown: 200;
+        --z-index-header: 500; /* Header und Drop-Down-Menü */
+        --z-index-modal: 1000; /* Popups */
+        --z-index-toast: 2000; /* Status-/System-Meldungen */
+    }
+
+/* === Browser Standardeinstellungen === */
+    * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+    }
+
+    body {
+            width: 100%;
+            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, Arial;
+            color: #fff;
+            background: #000;
+    }
+
+
+/* === Zusammenfassungen === */
+    h1 {
+        font-size: 1.8vw;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.5vw;
+        font-weight: 500;
+        line-height: 1.2;
+
+    }
+
+    p {
+        font-size: 1vw;
+        line-height: 1.6;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+
+
+/* === 1. Seitenwrapper === */
+    #page-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+
+            
+
+
+/* === Anfangsvideo === */
+
+    #loading-video-container {
+        position: fixed;
+        inset: 0;
+        z-index: var(--z-index-toast);
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1s ease;
+        opacity: 1;
+        max-height: 100vh;
+        max-width: 100vw;
+        overflow-y: auto;
+        pointer-events: all;
+    }
+
+    #loading-video {
+        width: 40%;
+        height: auto;
+        z-index: 5000;
+        transition: opacity 1s ease;
+        opacity: 1;
+    }
+
+    
